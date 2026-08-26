@@ -1,0 +1,6 @@
+{
+  "name": "Biometric Livestock Health Predictor",
+  "description": "Real-time IoT telemetry dashboard for livestock health monitoring, core temperature tracking, actigraphy ML baseline anomaly detection, and early disease prevention.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
