@@ -35,12 +35,14 @@ import {
 } from '../data/renoFarmData';
 import { UserProfile } from '../types';
 import { AnimatedCowIcon } from './AnimatedCowIcon';
+import { UserAvatar } from './UserAvatar';
 import { 
   HeroCowScene, 
   PastureTourScene, 
   PracticesCowScene, 
   HeritageCowScene,
-  REAL_COW_PHOTOS
+  REAL_COW_PHOTOS,
+  RealCowPhoto
 } from './CowIllustrations';
 
 const HERO_COW_OPTIONS = [
@@ -196,9 +198,9 @@ export const RenoFarmLanding: React.FC<RenoFarmLandingProps> = ({
                 </button>
 
                 <div className="flex items-center gap-2 pl-2 border-l border-slate-200">
-                  <img
+                  <UserAvatar
                     src={currentUser.avatarUrl}
-                    alt={currentUser.name}
+                    name={currentUser.name}
                     className="w-8 h-8 rounded-full object-cover border border-slate-300 shadow-xs"
                   />
                   <div className="hidden lg:block text-left">
@@ -358,10 +360,9 @@ export const RenoFarmLanding: React.FC<RenoFarmLandingProps> = ({
                           : 'opacity-60 hover:opacity-100'
                       }`}
                     >
-                      <img
-                        src={cow.photo}
+                      <RealCowPhoto
+                        imgSrc={cow.photo}
                         alt={cow.name}
-                        referrerPolicy="no-referrer"
                         className="w-full h-full object-cover"
                       />
                     </button>

@@ -17,7 +17,8 @@ import {
 } from 'lucide-react';
 import { Animal, UserProfile } from '../types';
 import { AnimatedCowIcon } from './AnimatedCowIcon';
-import { CowAvatar } from './CowIllustrations';
+import { CowAvatar, REAL_COW_PHOTOS } from './CowIllustrations';
+import { UserAvatar } from './UserAvatar';
 
 interface HeaderProps {
   activeAlertsCount: number;
@@ -173,7 +174,7 @@ export const Header: React.FC<HeaderProps> = ({
                   <div className="flex items-center gap-2.5">
                     <div className="w-7 h-7 rounded-lg overflow-hidden border border-slate-200 shrink-0">
                       <CowAvatar
-                        src={animal.photoUrl || '/images/cow-hero.jpg'}
+                        src={animal.photoUrl || REAL_COW_PHOTOS.heroHolstein}
                         alt={animal.name}
                         tagId={animal.tagId}
                       />
@@ -209,11 +210,10 @@ export const Header: React.FC<HeaderProps> = ({
         {/* User Session Profile Pill or Login Button */}
         {currentUser ? (
           <div className="flex items-center gap-2 pl-2 pr-1 py-1 rounded-2xl bg-slate-50 border border-slate-200 cursor-pointer" onClick={onOpenLoginModal}>
-            <img
+            <UserAvatar
               src={currentUser.avatarUrl}
-              alt={currentUser.name}
-              referrerPolicy="no-referrer"
-              className="w-7 h-7 rounded-xl object-cover border border-slate-300"
+              name={currentUser.name}
+              className="w-7 h-7 rounded-xl object-cover border border-slate-300 shadow-xs"
             />
             <div className="hidden sm:block text-left pr-2">
               <div className="text-[11px] font-bold text-slate-800 leading-tight">{currentUser.name}</div>

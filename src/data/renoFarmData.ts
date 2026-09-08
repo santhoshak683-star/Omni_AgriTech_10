@@ -47,7 +47,7 @@ export const DEMO_USERS: UserProfile[] = [
     email: 'martin.saris@renofarm.com',
     role: 'Farm Director',
     farmName: 'Reno Farm Dairy Estate',
-    avatarUrl: '/images/avatar-martin.jpg',
+    avatarUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&auto=format&fit=crop&q=80',
     facilityLocation: 'North Pasture & Milking Station A',
   },
   {
@@ -56,7 +56,7 @@ export const DEMO_USERS: UserProfile[] = [
     email: 'dr.sarah@renofarm.com',
     role: 'Chief Veterinarian',
     farmName: 'Reno Farm Biometrics Lab',
-    avatarUrl: '/images/avatar-sarah.jpg',
+    avatarUrl: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=150&auto=format&fit=crop&q=80',
     facilityLocation: 'Clinical Quarantine & Diagnostics Center',
   },
   {
@@ -65,7 +65,7 @@ export const DEMO_USERS: UserProfile[] = [
     email: 'lincoln.b@renofarm.com',
     role: 'Herd Operations Lead',
     farmName: 'Reno Farm Livestock Pen 4B',
-    avatarUrl: '/images/avatar-lincoln.jpg',
+    avatarUrl: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=150&auto=format&fit=crop&q=80',
     facilityLocation: 'IoT Ear-Tag & Bolus Gateway Terminal',
   },
 ];

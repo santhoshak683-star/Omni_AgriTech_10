@@ -15,7 +15,7 @@ import {
   Search,
   ExternalLink
 } from 'lucide-react';
-import { CowAvatar } from './CowIllustrations';
+import { CowAvatar, REAL_COW_PHOTOS } from './CowIllustrations';
 
 interface AlertsFeedProps {
   alerts: AlertNotification[];
@@ -120,7 +120,7 @@ export const AlertsFeed: React.FC<AlertsFeedProps> = ({
                   <div className="flex items-start gap-3">
                     <div className="relative w-12 h-12 rounded-xl overflow-hidden border border-slate-200 shadow-xs shrink-0 bg-slate-100 mt-0.5">
                       <CowAvatar
-                        src={alert.animalId === '8492' ? '/images/cow-hero.jpg' : alert.animalId === '7214' ? '/images/cow-jersey.jpg' : alert.animalId === '9180' ? '/images/cow-portrait.jpg' : '/images/cow-brown-swiss.jpg'}
+                        src={alert.animalId === '8492' ? REAL_COW_PHOTOS.heroHolstein : alert.animalId === '7214' ? REAL_COW_PHOTOS.jerseyCross : alert.animalId === '9180' ? REAL_COW_PHOTOS.holsteinPortrait : REAL_COW_PHOTOS.brownSwiss}
                         alt={alert.animalName}
                         tagId={alert.tagId}
                       />

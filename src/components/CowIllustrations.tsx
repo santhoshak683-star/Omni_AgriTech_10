@@ -1,24 +1,18 @@
 import React, { useState } from 'react';
 
-// Locally hosted, instantly loaded verified real photos of dairy cattle and pasture scenes
-export const REAL_COW_PHOTOS = {
-  heroHolstein: "/images/cow-hero.jpg",
-  pastureHerd: "/images/cow-pasture.jpg",
-  holsteinPortrait: "/images/cow-portrait.jpg",
-  motherAndCalf: "/images/cow-calf.jpg",
-  brownSwiss: "/images/cow-brown-swiss.jpg",
-  guernseyPasture: "/images/cow-guernsey.jpg",
-  farmAnimals: "/images/farm-animals.jpg",
-  jerseyCross: "/images/cow-jersey.jpg"
-};
-
-// Remote backup links in case
+// Verified high-resolution photos of dairy cattle and pasture scenes hosted on fast CDN
 export const REMOTE_COW_PHOTOS = {
   heroHolstein: "https://images.unsplash.com/photo-1546445317-29f4545e9d53?auto=format&fit=crop&w=1200&q=80",
   pastureHerd: "https://images.unsplash.com/photo-1527153857715-3908f2bae5e8?auto=format&fit=crop&w=1200&q=80",
   holsteinPortrait: "https://images.unsplash.com/photo-1570042225831-d98fa7577f1e?auto=format&fit=crop&w=1200&q=80",
-  motherAndCalf: "https://images.unsplash.com/photo-1500595046743-cd271d694d30?auto=format&fit=crop&w=1200&q=80"
+  motherAndCalf: "https://images.unsplash.com/photo-1500595046743-cd271d694d30?auto=format&fit=crop&w=1200&q=80",
+  brownSwiss: "https://images.unsplash.com/photo-1596733430284-f7437764b1a9?auto=format&fit=crop&w=1200&q=80",
+  guernseyPasture: "https://images.unsplash.com/photo-1568644396922-5c3bfae12521?auto=format&fit=crop&w=1200&q=80",
+  farmAnimals: "https://images.unsplash.com/photo-1484557052118-f32bd25b45b5?auto=format&fit=crop&w=1200&q=80",
+  jerseyCross: "https://images.unsplash.com/photo-1524024973431-2ad916746881?auto=format&fit=crop&w=1200&q=80"
 };
+
+export const REAL_COW_PHOTOS = REMOTE_COW_PHOTOS;
 
 interface RealCowImageProps {
   className?: string;
@@ -28,34 +22,43 @@ interface RealCowImageProps {
 }
 
 /**
- * Universal Resilient Real Cow Photograph component with triple redundancy:
- * 1. Local image file (/images/cow-*.jpg)
- * 2. Remote image fallback (Unsplash)
+ * Universal Resilient Real Cow Photograph component:
+ * 1. Resolves any local or remote image path to verified high-performance CDN URLs
+ * 2. Instant graceful fallback to backup cow portrait
  * 3. High quality vector graphics fallback if completely offline
  */
 export const RealCowPhoto: React.FC<RealCowImageProps> = ({
   className = 'w-full h-full object-cover',
-  imgSrc = REAL_COW_PHOTOS.heroHolstein,
+  imgSrc = REMOTE_COW_PHOTOS.heroHolstein,
   alt = 'Dairy Cow at Reno Farm',
 }) => {
   const [errorCount, setErrorCount] = useState(0);
 
-  // Normalize image source to local if possible
+  // Normalize image source to verified CDN URLs
   let resolvedSrc = imgSrc;
-  if (imgSrc.includes('photo-1546445317')) resolvedSrc = REAL_COW_PHOTOS.heroHolstein;
-  else if (imgSrc.includes('photo-1527153857')) resolvedSrc = REAL_COW_PHOTOS.pastureHerd;
-  else if (imgSrc.includes('photo-1570042225')) resolvedSrc = REAL_COW_PHOTOS.holsteinPortrait;
-  else if (imgSrc.includes('photo-1500595046')) resolvedSrc = REAL_COW_PHOTOS.motherAndCalf;
-  else if (imgSrc.includes('photo-1596733430')) resolvedSrc = REAL_COW_PHOTOS.brownSwiss;
-  else if (imgSrc.includes('photo-1568644396')) resolvedSrc = REAL_COW_PHOTOS.guernseyPasture;
-  else if (imgSrc.includes('photo-1484557052')) resolvedSrc = REAL_COW_PHOTOS.farmAnimals;
-  else if (imgSrc.includes('photo-1524024973')) resolvedSrc = REAL_COW_PHOTOS.jerseyCross;
+  if (!imgSrc || imgSrc.includes('cow-hero') || imgSrc.includes('photo-1546445317')) {
+    resolvedSrc = REMOTE_COW_PHOTOS.heroHolstein;
+  } else if (imgSrc.includes('cow-pasture') || imgSrc.includes('photo-1527153857')) {
+    resolvedSrc = REMOTE_COW_PHOTOS.pastureHerd;
+  } else if (imgSrc.includes('cow-portrait') || imgSrc.includes('photo-1570042225')) {
+    resolvedSrc = REMOTE_COW_PHOTOS.holsteinPortrait;
+  } else if (imgSrc.includes('cow-calf') || imgSrc.includes('photo-1500595046')) {
+    resolvedSrc = REMOTE_COW_PHOTOS.motherAndCalf;
+  } else if (imgSrc.includes('cow-brown-swiss') || imgSrc.includes('photo-1596733430')) {
+    resolvedSrc = REMOTE_COW_PHOTOS.brownSwiss;
+  } else if (imgSrc.includes('cow-guernsey') || imgSrc.includes('photo-1568644396')) {
+    resolvedSrc = REMOTE_COW_PHOTOS.guernseyPasture;
+  } else if (imgSrc.includes('farm-animals') || imgSrc.includes('photo-1484557052')) {
+    resolvedSrc = REMOTE_COW_PHOTOS.farmAnimals;
+  } else if (imgSrc.includes('cow-jersey') || imgSrc.includes('photo-1524024973')) {
+    resolvedSrc = REMOTE_COW_PHOTOS.jerseyCross;
+  }
 
   const handleImageError = () => {
     setErrorCount(prev => prev + 1);
   };
 
-  // If both local and remote failed, show a stylized cattle scene
+  // If both primary and secondary failed, show a stylized cattle scene
   if (errorCount >= 2) {
     return (
       <div className="w-full h-full bg-linear-to-b from-sky-400 to-emerald-600 flex items-center justify-center relative overflow-hidden">
@@ -76,7 +79,7 @@ export const RealCowPhoto: React.FC<RealCowImageProps> = ({
     );
   }
 
-  const currentSrc = errorCount === 0 ? resolvedSrc : (REMOTE_COW_PHOTOS.heroHolstein);
+  const currentSrc = errorCount === 0 ? resolvedSrc : REMOTE_COW_PHOTOS.heroHolstein;
 
   return (
     <img

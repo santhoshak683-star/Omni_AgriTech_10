@@ -36,7 +36,7 @@ import {
   HeartPulse
 } from 'lucide-react';
 import { formatTemperature, getStatusBadgeColor } from '../utils/formatters';
-import { CowAvatar } from './CowIllustrations';
+import { CowAvatar, REAL_COW_PHOTOS } from './CowIllustrations';
 
 interface AnimalDetailViewProps {
   animal: Animal;
@@ -93,7 +93,7 @@ export const AnimalDetailView: React.FC<AnimalDetailViewProps> = ({
           <div className="flex items-center gap-4">
             <div className="relative w-16 h-16 rounded-2xl overflow-hidden border-2 border-emerald-500 shadow-md shrink-0 bg-slate-100">
               <CowAvatar
-                src={animal.photoUrl || '/images/cow-hero.jpg'}
+                src={animal.photoUrl || REAL_COW_PHOTOS.heroHolstein}
                 alt={animal.name}
                 tagId={animal.tagId}
               />

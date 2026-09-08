@@ -18,6 +18,7 @@ import {
 import { UserProfile } from '../types';
 import { DEMO_USERS } from '../data/renoFarmData';
 import { AnimatedCowIcon } from './AnimatedCowIcon';
+import { UserAvatar } from './UserAvatar';
 
 interface RenoFarmLoginModalProps {
   isOpen: boolean;
@@ -250,9 +251,9 @@ export const RenoFarmLoginModal: React.FC<RenoFarmLoginModalProps> = ({
                     className="p-3.5 rounded-2xl border border-slate-200 bg-slate-50/70 hover:bg-sky-50/60 hover:border-sky-300 hover:shadow-xs transition-all text-left flex items-center justify-between group disabled:opacity-50"
                   >
                     <div className="flex items-center gap-3">
-                      <img
+                      <UserAvatar
                         src={usr.avatarUrl}
-                        alt={usr.name}
+                        name={usr.name}
                         className="w-11 h-11 rounded-2xl object-cover border border-slate-300 shadow-xs"
                       />
                       <div>

@@ -15,7 +15,7 @@ import {
   Building2 
 } from 'lucide-react';
 import { formatTemperature } from '../utils/formatters';
-import { CowAvatar } from './CowIllustrations';
+import { CowAvatar, REAL_COW_PHOTOS } from './CowIllustrations';
 
 interface ClinicalReportModalProps {
   animal: Animal | null;
@@ -86,7 +86,7 @@ export const ClinicalReportModal: React.FC<ClinicalReportModalProps> = ({
           <div className="flex flex-col sm:flex-row items-center gap-4 p-4 rounded-xl bg-slate-50 border border-slate-200">
             <div className="w-20 h-20 rounded-xl overflow-hidden border border-slate-300 shrink-0 bg-slate-200">
               <CowAvatar
-                src={animal.photoUrl || '/images/cow-hero.jpg'}
+                src={animal.photoUrl || REAL_COW_PHOTOS.heroHolstein}
                 alt={animal.name}
                 tagId={animal.tagId}
               />
